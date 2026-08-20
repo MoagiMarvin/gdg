@@ -2,17 +2,26 @@
 
 import { FormEvent, useState } from "react";
 
-const faqs = [
-  ["What is the difference between DTF and UV DTF?", "DTF means Direct to Film and is used to transfer full-colour designs onto fabric with heat. UV DTF uses ultraviolet light and creates durable transfers for hard surfaces."],
-  ["How does it work?", "We provide a ready-to-press transfer for fabric, or a robust semi-permanent sticker for hard surfaces with UV DTF."],
-  ["How do I order?", "Upload your artwork to our gang sheet builder and check out online as normal."],
-  ["How do I press or stick the transfer onto the garment or hard substrate?", "Follow our pressing instructions for DTF transfers or application instructions for UV DTF."],
-  ["How do I use the gang sheet builder?", "Choose your sheet size, upload your artwork and arrange each design before adding it to your cart."],
-  ["What do you do with my artworks I submit?", "All submitted artwork is deleted after 30 days. We never use, sell or print your artwork for another client."],
-  ["What about sublimation?", "Sublimation still has its place for hard substrates and white polyester. We continue to print sublimation transfers for those systems."],
+const products = [
+  { name: "Custom T-Shirt Print", type: "Apparel printing", price: "From R180", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85" },
+  { name: "Premium DTF Transfer", type: "Print transfers", price: "From R45", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=85" },
+  { name: "Branded Hoodie", type: "Custom apparel", price: "From R390", image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85" },
+  { name: "Business Starter Pack", type: "Branding package", price: "From R850", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=85" },
 ];
 
-const menuItems = ["HOME", "Collection and Shipping", "Artwork Preparation", "Pressing Instructions", "About Us", "Refunds and Returns", "ORDER DTF TRANSFER", "DTF Transfer by Size", "Build a DTF Gang Sheet", "ORDER UV DTF", "Order UVDTF By Size", "Build UVDTF Gang Sheet", "ORDER SUBLIMATION PRINT", "NEED HELP WITH BLANK APPAREL?"];
+const services = [
+  ["01", "Custom printing", "Professional prints made for apparel, packaging, signage and your next big idea."],
+  ["02", "Branded apparel", "Turn your logo into quality t-shirts, hoodies, workwear and team clothing."],
+  ["03", "Design support", "Need a fresh start? We help shape your idea into artwork ready to print."],
+];
+
+const faqs = [
+  ["What can GD Graphics & Prints make?", "We create custom apparel, DTF transfers, branded products, print work and design solutions for individuals, teams and businesses."],
+  ["Can I order a custom design?", "Yes. Send us your idea or existing artwork and we can guide you through the best print option."],
+  ["How do I get a quote?", "Use the contact form below or message us with your product, quantity and artwork details."],
+];
+
+const menuItems = ["Home", "Shop", "Services", "About Us", "Gallery", "Contact"];
 
 export default function Home() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -27,33 +36,36 @@ export default function Home() {
 
   return (
     <div className="site-shell">
+      <div className="topline">Premium custom printing and branded apparel <span>South Africa</span></div>
       <header className="site-header">
-        <a href="#top" className="logo" aria-label="GD Graphics and Prints home">
-          <img src="/gd-logo.png.jpeg" alt="GD Graphics and Prints - Quality Reliable Designs" />
-        </a>
-        <nav className="mock-nav" aria-label="Main navigation"><a className="active" href="#top">Home</a><a href="#services">Services</a><a href="#about">About Us</a><a href="#contact">Contact</a></nav>
-        <div className="header-actions">
-          <button className="search-button" aria-label="Open search" onClick={() => setSearchOpen(true)}><span /></button>
-          <button className="cart-button" aria-label="Open cart" onClick={() => window.alert("Your cart is empty.")}><span /><b>0</b></button>
-        </div>
+        <button className="mobile-menu" aria-label="Open menu" onClick={() => setDrawerOpen(true)}><i /><i /><i /></button>
+        <a href="#top" className="logo" aria-label="GD Graphics and Prints home"><img src="/gd-logo.png.jpeg" alt="GD Graphics and Prints - Quality Reliable Designs" /></a>
+        <nav className="mock-nav" aria-label="Main navigation">{menuItems.map((item, index) => <a key={item} className={index === 0 ? "active" : ""} href={item === "Home" ? "#top" : `#${item.toLowerCase().replaceAll(" ", "-")}`}>{item}</a>)}</nav>
+        <div className="header-actions"><button className="search-button" aria-label="Open search" onClick={() => setSearchOpen(true)}><span /></button><a className="quote-link" href="#contact">Get a quote</a></div>
       </header>
-      {searchOpen && <div className="search-panel"><input autoFocus type="search" placeholder="Search products" aria-label="Search products" /><button onClick={() => setSearchOpen(false)} aria-label="Close search">&times;</button></div>}
+      {searchOpen && <div className="search-panel"><input autoFocus type="search" placeholder="Search the catalogue" aria-label="Search the catalogue" /><button onClick={() => setSearchOpen(false)} aria-label="Close search">&times;</button></div>}
 
       <main id="top">
-        <section className="brand-hero" id="about"><div><p className="eyebrow">PRINTING WITH PURPOSE</p><h1>Quality reliable designs.</h1><p>Bold ideas, beautifully printed. GD Graphics &amp; Prints brings your brand, apparel and creative work to life.</p><a className="gold-button" href="#services">Explore our services</a></div><img className="hero-logo" src="/gd-logo.png.jpeg" alt="GD Graphics and Prints logo" /></section>
-        <section className="service-strip" id="services"><div><b>01</b><h2>Custom Printing</h2><p>Professional prints made for your next big idea.</p></div><div><b>02</b><h2>Branded Apparel</h2><p>Stand out with designs made to be remembered.</p></div><div><b>03</b><h2>Design Support</h2><p>Reliable creative help from concept to finish.</p></div></section>
-        <section className="faq-section" id="guide"><h2>FAQ</h2><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span>⌄</span></summary><p>{answer}</p></details>)}</div></section>
-        <section className="video-grid"><div className="video-frame"><div className="play">▶</div><small>DTF transfer application</small></div><div className="video-frame"><div className="play">▶</div><small>UV DTF transfer application</small></div></section>
-        <section className="contact-section" id="contact">
-          <div className="contact-copy"><h2>Contact Us</h2><p>DTF Central (Pty) Ltd - Bloemfontein Free State</p><p>Our office hours are Monday - Friday 8am - 5pm</p><p>All queries will be handled during these hours. We are closed over weekends</p><div className="socials"><a href="#contact" aria-label="Facebook">f</a><a href="#contact" aria-label="Instagram">◎</a></div></div>
-          <form className="contact-form" onSubmit={submitForm}><label>Name *<input required name="name" /></label><label>Email *<input required type="email" name="email" /></label><label>Message<textarea name="message" rows={4} /></label><button type="submit">Submit</button>{submitted && <p className="form-message">Thanks, your message has been received.</p>}</form>
-          <div className="details"><p>✉ Email: orders(at)dtfcentral.co.za</p><p>♧ Whatsapp: 065 734 8040</p><p>⌖ 100 Dreyer Avenue Roodewal BFN</p></div>
-          <div className="policies"><h3>Policies</h3><a href="#contact">Refunds and Returns</a><a href="#contact">Privacy Policy</a><a href="#contact">Security Policy</a><a href="#contact">Terms of Sale</a><a href="#contact">Website Terms of Use</a></div>
-        </section>
+        <section className="brand-hero" id="about"><div className="hero-copy"><p className="eyebrow">QUALITY RELIABLE DESIGNS</p><h1>Make your mark.</h1><p>From an idea on paper to a product in your hands, we make bold, considered printing for people and brands worth remembering.</p><div className="hero-actions"><a className="gold-button" href="#shop">Shop the collection</a><a className="text-link" href="#services">Explore services <span>↗</span></a></div></div><img className="hero-logo" src="/gd-logo.png.jpeg" alt="GD Graphics and Prints logo" /></section>
+
+        <section className="shop-section" id="shop"><div className="section-heading"><div><p className="eyebrow">OUR COLLECTION</p><h2>Made for your next idea</h2></div><a className="text-link" href="#contact">View all products <span>↗</span></a></div><div className="product-grid">{products.map((product) => <article className="product-card" key={product.name}><div className="product-image"><img src={product.image} alt={product.name} /><button aria-label={`Add ${product.name} to cart`} onClick={() => window.alert(`${product.name} added to enquiry.`)}>+</button></div><p>{product.type}</p><h3>{product.name}</h3><strong>{product.price}</strong></article>)}</div></section>
+
+        <section className="service-section" id="services"><div className="section-heading"><div><p className="eyebrow">WHAT WE DO</p><h2>More than just printing</h2></div><p className="section-intro">Reliable creative support and quality production for the work you want people to notice.</p></div><div className="service-grid">{services.map(([number, title, copy]) => <article key={number}><b>{number}</b><h3>{title}</h3><p>{copy}</p><a href="#contact" aria-label={`Learn about ${title}`}>Learn more <span>↗</span></a></article>)}</div></section>
+
+        <section className="story-section"><div className="story-image"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85" alt="Creative team working on a brand project" /></div><div className="story-copy"><p className="eyebrow">WHY GD GRAPHICS &amp; PRINTS</p><h2>Thoughtful work. Dependable finish.</h2><p>We believe the details matter. Every order is handled with care, from choosing the right materials to making sure your final product looks the way you imagined it.</p><ul><li><b>01</b><span>Quality materials and sharp finishes</span></li><li><b>02</b><span>Personal service from idea to delivery</span></li><li><b>03</b><span>Creative solutions built around you</span></li></ul><a className="gold-button" href="#contact">Work with us</a></div></section>
+
+        <section className="gallery-section" id="gallery"><div className="section-heading"><div><p className="eyebrow">OUR GALLERY</p><h2>A little inspiration</h2></div><a className="text-link" href="#contact">Start your project <span>↗</span></a></div><div className="gallery-grid"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85" alt="Printed fashion detail" /><img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85" alt="Branded clothing on a rail" /><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=85" alt="Creative product packaging" /><img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=900&q=85" alt="Designed interior product" /></div></section>
+
+        <section className="testimonial"><p className="eyebrow">A WORD FROM OUR CLIENTS</p><blockquote>“The team understood exactly what we needed and the final prints looked even better than we imagined.”</blockquote><p className="testimonial-name">— Local business owner</p></section>
+
+        <section className="faq-section" id="faq"><div className="section-heading"><div><p className="eyebrow">NEED TO KNOW</p><h2>Frequently asked</h2></div></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span>⌄</span></summary><p>{answer}</p></details>)}</div></section>
+
+        <section className="contact-section" id="contact"><div className="contact-copy"><p className="eyebrow">LET&apos;S MAKE SOMETHING</p><h2>Ready when you are.</h2><p>Tell us what you are working on and we&apos;ll help you find the right way to bring it to life.</p><div className="contact-details"><p>Email: hello@gdgraphics.co.za</p><p>WhatsApp: 065 734 8040</p><p>South Africa</p></div></div><form className="contact-form" onSubmit={submitForm}><label>Name *<input required name="name" /></label><label>Email *<input required type="email" name="email" /></label><label>Tell us about your project<textarea name="message" rows={4} /></label><button type="submit">Send enquiry <span>↗</span></button>{submitted && <p className="form-message">Thanks, your message has been received.</p>}</form></section>
       </main>
-      <footer>© 2026 DTF Central.</footer>
+
+      <footer><img src="/gd-logo.png.jpeg" alt="GD Graphics and Prints" /><div><a href="#shop">Shop</a><a href="#services">Services</a><a href="#about">About Us</a><a href="#contact">Contact</a></div><small>© 2026 GD Graphics &amp; Prints. Quality reliable designs.</small></footer>
       <div className={`drawer-backdrop ${drawerOpen ? "show" : ""}`} onClick={() => setDrawerOpen(false)} />
-      <aside className={`drawer ${drawerOpen ? "open" : ""}`} aria-hidden={!drawerOpen}><button className="drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu">&times;</button><nav>{menuItems.map((item, index) => <a key={item} className={index === 0 || item.startsWith("ORDER") || item.startsWith("NEED") ? "top-link" : ""} href={index === 0 ? "#top" : item.includes("Contact") ? "#contact" : "#guide"} onClick={() => setDrawerOpen(false)}>{item}{(index === 0 || item === "ORDER DTF TRANSFER" || item === "ORDER UV DTF") && <span>⌄</span>}</a>)}</nav></aside>
+      <aside className={`drawer ${drawerOpen ? "open" : ""}`} aria-hidden={!drawerOpen}><button className="drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu">&times;</button><nav>{menuItems.map((item) => <a key={item} href={item === "Home" ? "#top" : `#${item.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setDrawerOpen(false)}>{item}<span>↗</span></a>)}</nav></aside>
     </div>
   );
 }
