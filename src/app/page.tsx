@@ -40,7 +40,7 @@ export default function Home() {
       <header className="site-header">
         <button className="mobile-menu" aria-label="Open menu" onClick={() => setDrawerOpen(true)}><i /><i /><i /></button>
         <a href="#top" className="logo" aria-label="GD Graphics and Prints home"><img src="/gd-logo.png.jpeg" alt="GD Graphics and Prints - Quality Reliable Designs" /></a>
-        <nav className="mock-nav" aria-label="Main navigation">{menuItems.map((item, index) => <a key={item} className={index === 0 ? "active" : ""} href={item === "Home" ? "#top" : `#${item.toLowerCase().replaceAll(" ", "-")}`}>{item}</a>)}</nav>
+        <nav className="mock-nav" aria-label="Main navigation">{menuItems.map((item, index) => <a key={item} className={index === 0 ? "active" : ""} href={item === "Home" ? "#top" : item === "Shop" ? "/builder" : `#${item.toLowerCase().replaceAll(" ", "-")}`}>{item}</a>)}</nav>
         <div className="header-actions"><button className="search-button" aria-label="Open search" onClick={() => setSearchOpen(true)}><span /></button><a className="quote-link" href="#contact">Get a quote</a></div>
       </header>
       {searchOpen && <div className="search-panel"><input autoFocus type="search" placeholder="Search the catalogue" aria-label="Search the catalogue" /><button onClick={() => setSearchOpen(false)} aria-label="Close search">&times;</button></div>}
@@ -65,7 +65,7 @@ export default function Home() {
 
       <footer><img src="/gd-logo.png.jpeg" alt="GD Graphics and Prints" /><div><a href="#shop">Shop</a><a href="#services">Services</a><a href="#about">About Us</a><a href="#contact">Contact</a></div><small>© 2026 GD Graphics &amp; Prints. Quality reliable designs.</small></footer>
       <div className={`drawer-backdrop ${drawerOpen ? "show" : ""}`} onClick={() => setDrawerOpen(false)} />
-      <aside className={`drawer ${drawerOpen ? "open" : ""}`} aria-hidden={!drawerOpen}><button className="drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu">&times;</button><nav>{menuItems.map((item) => <a key={item} href={item === "Home" ? "#top" : `#${item.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setDrawerOpen(false)}>{item}<span>↗</span></a>)}</nav></aside>
+      <aside className={`drawer ${drawerOpen ? "open" : ""}`} aria-hidden={!drawerOpen}><button className="drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu">&times;</button><nav>{menuItems.map((item) => <a key={item} href={item === "Home" ? "#top" : item === "Shop" ? "/builder" : `#${item.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setDrawerOpen(false)}>{item}<span>↗</span></a>)}</nav></aside>
     </div>
   );
 }

@@ -180,6 +180,55 @@ footer small { justify-self: end; color: var(--muted); }
   .poster-overlay { display: none; }
 }
 
+.builder-page { min-height: 100vh; background: #faf9f6; color: var(--black); }
+.builder-header { height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 12px 6vw; border-bottom: 1px solid var(--line); background: #fff; }
+.builder-logo img { display: block; width: 190px; height: 64px; object-fit: contain; }
+.builder-back { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; }
+.builder-intro { max-width: 850px; margin: auto; padding: 76px 6vw 50px; text-align: center; }
+.builder-intro h1 { margin: 10px 0 14px; font: 400 clamp(42px, 6vw, 76px)/1 var(--serif); }
+.builder-intro > p:last-child { color: var(--muted); }
+.builder-layout { max-width: 1220px; margin: auto; padding: 0 5vw 80px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr); gap: 24px; }
+.builder-workspace, .builder-controls { background: #fff; border: 1px solid var(--line); }
+.builder-workspace { padding: 27px; }
+.workspace-top, .section-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.workspace-top h2, .control-block h2 { margin: 5px 0 0; font: 400 24px var(--serif); }
+.step { color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+.upload-button, .order-button { display: inline-block; padding: 13px 18px; background: var(--black); color: #fff; text-transform: uppercase; font-size: 10px; font-weight: 700; letter-spacing: .1em; cursor: pointer; }
+.upload-button input { display: none; }
+.sheet-label { display: flex; justify-content: space-between; margin: 30px 0 10px; font-size: 12px; font-weight: 700; }
+.sheet-label span { color: var(--muted); font-weight: 400; }
+.sheet-stage { position: relative; width: 100%; aspect-ratio: 30 / 20; overflow: hidden; background-color: #fff; background-image: linear-gradient(#e9e3d6 1px, transparent 1px), linear-gradient(90deg, #e9e3d6 1px, transparent 1px); background-size: 5% 10%; border: 1px solid #cbc3b2; touch-action: none; }
+.empty-sheet { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; color: var(--muted); }
+.empty-sheet span { color: var(--gold); font-size: 42px; font-weight: 200; }
+.empty-sheet p { margin: 5px 0; color: var(--black); }
+.empty-sheet small { font-size: 11px; }
+.design { position: absolute; padding: 3px; cursor: grab; touch-action: none; }
+.design:active { cursor: grabbing; }
+.design.selected { outline: 2px solid var(--gold); outline-offset: 3px; }
+.design img { width: 100%; height: 100%; display: block; object-fit: contain; pointer-events: none; }
+.clear-button, .remove-design { margin-top: 15px; color: #a11c18; font-size: 11px; text-decoration: underline; }
+.builder-controls { padding: 28px; }
+.control-block + .control-block { margin-top: 42px; padding-top: 28px; border-top: 1px solid var(--line); }
+.size-options { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+.size-options button { display: flex; align-items: center; justify-content: space-between; padding: 13px 12px; border: 1px solid var(--line); text-align: left; font-size: 13px; }
+.size-options button:hover, .size-options button.chosen { border-color: var(--gold); background: #fffaf0; }
+.size-options b { font-size: 13px; }
+.active-file { overflow: hidden; margin: 22px 0 16px; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.range-label { display: flex; flex-direction: column; gap: 10px; font-size: 12px; }
+.range-label input { accent-color: var(--gold); }
+.muted { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.order-summary { margin-top: 42px; padding-top: 25px; border-top: 2px solid var(--black); }
+.order-summary > p { margin: 0 0 18px; font-size: 10px; letter-spacing: .15em; font-weight: 700; }
+.order-summary > div { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.order-summary small { display: block; margin-top: 10px; color: #8c6a1a; }
+.order-button { width: 100%; margin-top: 22px; background: var(--gold); color: var(--black); }
+.builder-notes { max-width: 1100px; margin: auto; padding: 30px 5vw 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid var(--line); }
+.builder-notes div { display: flex; flex-direction: column; gap: 8px; }
+.builder-notes b { font: 400 18px var(--serif); }
+.builder-notes span { color: var(--muted); font-size: 12px; }
+@media (max-width: 800px) { .builder-layout { grid-template-columns: 1fr; } .builder-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; } .control-block + .control-block { margin-top: 0; padding-top: 0; border-top: 0; } .order-summary { grid-column: 1 / -1; margin-top: 10px; } }
+@media (max-width: 560px) { .builder-header { height: 75px; } .builder-logo img { width: 150px; height: 52px; } .builder-back { font-size: 10px; } .builder-intro { padding: 52px 7vw 35px; } .builder-workspace { padding: 18px; } .workspace-top { align-items: flex-start; flex-direction: column; } .sheet-label { align-items: flex-start; flex-direction: column; gap: 5px; } .sheet-stage { aspect-ratio: 3 / 2; } .builder-controls { display: block; padding: 20px; } .control-block + .control-block { margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--line); } .builder-notes { grid-template-columns: 1fr; padding-bottom: 50px; } }
+
 /* Keep the portrait storefront photo cropped, never stretched. */
 .brand-hero {
   min-height: 0;
