@@ -44,6 +44,13 @@ button, input, textarea { font: inherit; }
 .gold-button { display: inline-block; margin-top: 18px; padding: 14px 24px; background: var(--black); color: #fff; border-left: 4px solid var(--gold); text-transform: uppercase; font-size: 11px; letter-spacing: .12em; }
 .gold-button:hover { background: #2a2a2a; }
 .hero-logo { justify-self: center; width: min(100%, 450px); max-height: 320px; object-fit: contain; mix-blend-mode: multiply; }
+.hero-poster { justify-self: center; width: min(100%, 520px); aspect-ratio: 3 / 4; position: relative; overflow: hidden; background: #080808; border: 1px solid #27200f; box-shadow: 14px 14px 0 #f2ead8; }
+.hero-poster > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.poster-overlay { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 5px; padding: 30px 25px 22px; color: #fff; background: linear-gradient(transparent, #000e); }
+.poster-overlay strong { color: var(--gold-light); font: 700 28px var(--serif); letter-spacing: .05em; }
+.poster-overlay span { font-size: 12px; }
+.poster-overlay b { color: #fff; font-size: 20px; }
+.poster-overlay a { align-self: flex-start; margin-top: 8px; padding: 9px 14px; background: var(--gold); color: var(--black); text-transform: uppercase; font-size: 10px; font-weight: 700; letter-spacing: .08em; }
 .service-strip { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 38px 11vw; gap: 42px; }
 .service-strip > div + div { border-left: 1px solid var(--line); padding-left: 42px; }
 .service-strip b { color: var(--gold); font-size: 13px; }
@@ -146,4 +153,61 @@ footer small { justify-self: end; color: var(--muted); }
 .drawer nav a span { display: inline; }
 
 @media (max-width: 850px) { .site-header { gap: 20px; } .mock-nav { gap: 15px; } .quote-link { display: none; } .product-grid { grid-template-columns: repeat(2, 1fr); } .service-grid { grid-template-columns: 1fr; } .story-copy { padding: 55px 7vw; } footer { grid-template-columns: 1fr 1fr; } footer small { grid-column: 1 / -1; justify-self: start; } }
-@media (max-width: 650px) { .topline { font-size: 10px; } .topline span { display: none; } .mobile-menu { display: flex; width: 35px; flex-direction: column; gap: 5px; } .mobile-menu i { width: 22px; height: 1px; background: var(--black); } .site-header { min-height: 88px; padding: 10px 5vw; } .logo img { width: 190px; height: 64px; } .header-actions { margin-left: auto; } .brand-hero { min-height: 650px; padding: 58px 9vw; } .hero-logo { width: min(100%, 330px); } .shop-section, .service-section, .gallery-section { padding: 70px 6vw; } .section-heading { align-items: start; flex-direction: column; gap: 20px; } .product-grid { gap: 26px 12px; } .product-card h3 { font-size: 17px; } .product-image button { width: 32px; height: 32px; } .story-section { grid-template-columns: 1fr; } .story-image { min-height: 300px; } .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 145px 145px 145px; } .gallery-grid img:first-child { grid-row: span 2; } .gallery-grid img:last-child { grid-column: span 2; } .testimonial { padding: 80px 8vw; } .faq-section { padding: 70px 6vw 50px; } .contact-section { padding: 65px 6vw; } footer { display: flex; flex-direction: column; align-items: start; padding: 28px 6vw; } footer div { justify-content: start; flex-wrap: wrap; } }
+@media (max-width: 650px) { .topline { font-size: 10px; } .topline span { display: none; } .mobile-menu { display: flex; width: 35px; flex-direction: column; gap: 5px; } .mobile-menu i { width: 22px; height: 1px; background: var(--black); } .site-header { min-height: 88px; padding: 10px 5vw; } .logo img { width: 190px; height: 64px; } .header-actions { margin-left: auto; } .brand-hero { min-height: 650px; padding: 58px 9vw; } .hero-logo { width: min(100%, 330px); } .hero-poster { width: min(100%, 340px); box-shadow: 8px 8px 0 #f2ead8; } .poster-overlay { padding: 24px 18px 17px; } .poster-overlay strong { font-size: 22px; } .shop-section, .service-section, .gallery-section { padding: 70px 6vw; } .section-heading { align-items: start; flex-direction: column; gap: 20px; } .product-grid { gap: 26px 12px; } .product-card h3 { font-size: 17px; } .product-image button { width: 32px; height: 32px; } .story-section { grid-template-columns: 1fr; } .story-image { min-height: 300px; } .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 145px 145px 145px; } .gallery-grid img:first-child { grid-row: span 2; } .gallery-grid img:last-child { grid-column: span 2; } .testimonial { padding: 80px 8vw; } .faq-section { padding: 70px 6vw 50px; } .contact-section { padding: 65px 6vw; } footer { display: flex; flex-direction: column; align-items: start; padding: 28px 6vw; } footer div { justify-content: start; flex-wrap: wrap; } }
+
+/* The hero is one composed image with the message living inside it. */
+.brand-hero { position: relative; display: block; min-height: clamp(520px, 43vw, 690px); padding: 0; overflow: hidden; background: #090909; }
+.hero-poster { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; aspect-ratio: auto; border: 0; box-shadow: none; }
+.hero-poster > img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.hero-poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.54) 34%, rgba(0,0,0,.08) 68%, rgba(0,0,0,.12) 100%); }
+.hero-copy { position: relative; z-index: 2; width: min(48%, 620px); min-height: clamp(520px, 43vw, 690px); display: flex; flex-direction: column; justify-content: center; padding: 70px 0 70px 9vw; color: #fff; }
+.hero-copy { max-width: 560px; }
+.hero-copy h1 { color: #fff; text-shadow: 0 2px 18px #000; }
+.hero-copy > p:not(.eyebrow) { color: #f3f0ea; text-shadow: 0 1px 8px #000; }
+.hero-copy .eyebrow { color: var(--gold-light); }
+.hero-copy .text-link { color: #fff; text-shadow: 0 1px 5px #000; }
+.hero-copy .text-link span { color: var(--gold-light); }
+.poster-overlay { display: none; }
+
+@media (max-width: 650px) {
+  .brand-hero { min-height: 620px; }
+  .hero-poster { width: 100%; }
+  .hero-poster > img { object-position: 58% center; }
+  .hero-poster::after { background: linear-gradient(180deg, rgba(0,0,0,.15) 20%, rgba(0,0,0,.28) 45%, rgba(0,0,0,.9) 100%); }
+  .hero-copy { width: 100%; min-height: 620px; justify-content: flex-end; padding: 42px 8vw 48px; }
+  .hero-copy h1 { font-size: clamp(42px, 12vw, 64px); max-width: 360px; }
+  .hero-copy > p:not(.eyebrow) { max-width: 360px; }
+  .poster-overlay { display: none; }
+}
+
+/* Keep the portrait storefront photo cropped, never stretched. */
+.brand-hero {
+  min-height: 0;
+  height: clamp(480px, 42vw, 650px);
+}
+.hero-poster > img {
+  object-fit: cover;
+  object-position: 50% 43%;
+}
+.hero-copy {
+  min-height: 100%;
+}
+
+@media (min-width: 651px) {
+  .hero-poster::after {
+    background: linear-gradient(90deg, rgba(0,0,0,.8) 0%, rgba(0,0,0,.5) 32%, rgba(0,0,0,.08) 64%, rgba(0,0,0,.08) 100%);
+  }
+}
+
+@media (max-width: 650px) {
+  .brand-hero {
+    height: min(720px, 132vw);
+    min-height: 550px;
+  }
+  .hero-poster > img {
+    object-position: 50% 48%;
+  }
+  .hero-copy {
+    min-height: 100%;
+  }
+}
